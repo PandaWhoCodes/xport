@@ -890,8 +890,9 @@ def ieee_to_ibm(ieee):
     # defined with a mechanism for not-a-number (NaN) values, SAS uses
     # alternative zero encodings to represent NaN.  By default, a SAS missing
     # value is encoded with an ASCII-encoded period (".") as the first byte.
-
-    if isinstance(ieee, np.nan):
+    warnings.warn(str(ieee))
+    warnings.warn(type(ieee))
+    if np.isnan(ieee):
         return b'.' + b'\x00' * 7
     if isinstance(ieee, xport.NaN):
         return bytes(ieee)
