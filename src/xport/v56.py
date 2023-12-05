@@ -893,12 +893,12 @@ def ieee_to_ibm(ieee):
     warnings.warn(str(ieee))
     warnings.warn(str(math.isnan(ieee)))
     # warnings.warn(str(type(ieee)))
+    if math.isnan(ieee):
+        return b'.' + b'\x00' * 7
     if np.isnan(ieee):
         return b'.' + b'\x00' * 7
     if isinstance(ieee, xport.NaN):
         return bytes(ieee)
-    if math.isnan(ieee):
-        return b'.' + b'\x00' * 7
     if math.isinf(ieee):
         raise NotImplementedError('Cannot convert infinity')
 
