@@ -21,6 +21,7 @@ from datetime import datetime
 
 # Community Packages
 import pandas as pd
+import numpy as np
 
 # Xport Modules
 import xport
@@ -890,6 +891,8 @@ def ieee_to_ibm(ieee):
     # alternative zero encodings to represent NaN.  By default, a SAS missing
     # value is encoded with an ASCII-encoded period (".") as the first byte.
 
+    if isinstance(ieee, np.nan):
+        return b'.' + b'\x00' * 7
     if isinstance(ieee, xport.NaN):
         return bytes(ieee)
     if math.isnan(ieee):
