@@ -891,7 +891,7 @@ def ieee_to_ibm(ieee):
     # alternative zero encodings to represent NaN.  By default, a SAS missing
     # value is encoded with an ASCII-encoded period (".") as the first byte.
     warnings.warn(str(ieee))
-    warnings.warn(type(ieee))
+    warnings.warn(str(type(ieee)))
     if np.isnan(ieee):
         return b'.' + b'\x00' * 7
     if isinstance(ieee, xport.NaN):
